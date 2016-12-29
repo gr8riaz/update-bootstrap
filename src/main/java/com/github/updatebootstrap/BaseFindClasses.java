@@ -9,23 +9,27 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author user
+ * @author mriaz
  *
  */
 public abstract class BaseFindClasses {
 
 	private String projectDirectory;
 	private List<String> inputFileExtensions;
-	private List<CssClassFile> listOfCssClassesFound = new ArrayList<>();
+	private List<CssClassFile> listOfCssClassesFound = new ArrayList<>( );
+
 	/**
 	 * 
-	 * @param projectDirectory Root directory of the project
-	 * @param inputFileExtensions should contain the extension of all those files which contain HTML code and the CSS classes.
+	 * @param projectDirectory
+	 *            Root directory of the project
+	 * @param inputFileExtensions
+	 *            should contain the extension of all those files which contain
+	 *            HTML code and the CSS classes.
 	 */
-	public BaseFindClasses(String projectDirectory, String... inputFileExtensions){
-		initializeInput(projectDirectory, inputFileExtensions);
+	public BaseFindClasses(String projectDirectory, String... inputFileExtensions) {
+		initializeInput( projectDirectory, inputFileExtensions );
 	}
-	
+
 	/**
 	 * 
 	 * @param projectDirectory2
@@ -33,16 +37,25 @@ public abstract class BaseFindClasses {
 	 */
 	private void initializeInput(String projectDirectory, String... inputFileExtensions) {
 		this.projectDirectory = projectDirectory;
-		this.inputFileExtensions = Arrays.asList(inputFileExtensions);
+		this.inputFileExtensions = Arrays.asList( inputFileExtensions );
 	}
-	
+
 	/**
 	 * 
 	 * @param rootPath
-	 * Tranverse the rootpath recursively and find all a file with the given extension 
+	 *            Tranverse the rootpath recursively and find all a file with
+	 *            the given extension
 	 */
 	public abstract void traverseRootDirectory(String rootPath);
-	
+
+	/**
+	 * This method is to check whether the provide {@code file} has the the
+	 * given {@code extensions}
+	 * 
+	 * @param file
+	 * @param extensions
+	 * @return
+	 */
 	public abstract boolean isContainExtension(File file, List<String> extensions);
 
 	/**
@@ -53,7 +66,8 @@ public abstract class BaseFindClasses {
 	}
 
 	/**
-	 * @param projectDirectory the projectDirectory to set
+	 * @param projectDirectory
+	 *            the projectDirectory to set
 	 */
 	public void setProjectDirectory(String projectDirectory) {
 		this.projectDirectory = projectDirectory;
@@ -67,7 +81,8 @@ public abstract class BaseFindClasses {
 	}
 
 	/**
-	 * @param inputFileExtensions the inputFileExtensions to set
+	 * @param inputFileExtensions
+	 *            the inputFileExtensions to set
 	 */
 	public void setInputFileExtensions(List<String> inputFileExtensions) {
 		this.inputFileExtensions = inputFileExtensions;
@@ -79,23 +94,23 @@ public abstract class BaseFindClasses {
 	public List<CssClassFile> getListOfCssClassesFound() {
 		return listOfCssClassesFound;
 	}
-	
+
 	/**
 	 * 
 	 * @param cssClassFile
-	 * @return {@link Boolean} This method will return {code true} if 
-	 * the object {code cssClassFile} is successfully added in
-	 * {code listOfCssClassesFound}
+	 * @return {@link Boolean} This method will return {code true} if the object
+	 *         {code cssClassFile} is successfully added in {code
+	 *         listOfCssClassesFound}
 	 */
-	public boolean addIntoList(CssClassFile cssClassFile){
+	public boolean addIntoList(CssClassFile cssClassFile) {
 		boolean isAdded = true;
 		try {
-			listOfCssClassesFound.add(cssClassFile);
+			listOfCssClassesFound.add( cssClassFile );
 		} catch (Exception e) {
 			isAdded = false;
 		}
-		
+
 		return isAdded;
 	}
-	
+
 }
